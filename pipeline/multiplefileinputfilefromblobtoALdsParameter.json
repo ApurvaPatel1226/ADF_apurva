@@ -16,13 +16,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "myfirstdataset1",
+						"referenceName": "Parent_Path",
 						"type": "DatasetReference",
 						"parameters": {
-							"filename": {
-								"value": "@pipeline().parameters.filename",
-								"type": "Expression"
-							}
+							"Container_Name": "inputdata"
 						}
 					},
 					"fieldList": [
@@ -82,7 +79,7 @@
 								"sink": {
 									"type": "AzureSqlSink",
 									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false,
+									"sqlWriterUseTableLock": true,
 									"tableOption": "autoCreate",
 									"disableMetricsCollection": false
 								},
