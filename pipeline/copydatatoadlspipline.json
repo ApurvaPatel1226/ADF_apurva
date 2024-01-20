@@ -115,6 +115,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -125,10 +126,12 @@
 		],
 		"parameters": {
 			"File_Path": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "inputdata"
 			},
 			"File_Name": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "employees.csv"
 			}
 		},
 		"annotations": []
