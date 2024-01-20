@@ -115,6 +115,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
+						"folderPath": "firstdata",
 						"fileSystem": "myoutputdataadls"
 					},
 					"columnDelimiter": ",",
@@ -138,13 +139,27 @@
 					"referenceName": "AzureBlobStorage1",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"File_Path": {
+						"type": "string"
+					},
+					"File_Name": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "employees.csv",
-						"container": "inputdata"
+						"fileName": {
+							"value": "@dataset().File_Name",
+							"type": "Expression"
+						},
+						"container": {
+							"value": "@dataset().File_Path",
+							"type": "Expression"
+						}
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -271,7 +286,16 @@
 							{
 								"referenceName": "myfirstdataset1",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"File_Path": {
+										"value": "@pipeline().parameters.File_Path",
+										"type": "Expression"
+									},
+									"File_Name": {
+										"value": "@pipeline().parameters.File_Name",
+										"type": "Expression"
+									}
+								}
 							}
 						],
 						"outputs": [
@@ -281,10 +305,58 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Get Metadata1",
+						"type": "GetMetadata",
+						"state": "Inactive",
+						"onInactiveMarkAs": "Succeeded",
+						"dependsOn": [
+							{
+								"activity": "Copy data1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "myfirstadlsdataset",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"fieldList": [
+								"childItems"
+							],
+							"storeSettings": {
+								"type": "AzureBlobFSReadSettings",
+								"recursive": true,
+								"enablePartitionDiscovery": false
+							},
+							"formatSettings": {
+								"type": "DelimitedTextReadSettings"
+							}
+						}
 					}
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"File_Path": {
+						"type": "string"
+					},
+					"File_Name": {
+						"type": "string"
+					}
 				},
 				"annotations": []
 			},
