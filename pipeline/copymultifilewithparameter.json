@@ -1,17 +1,6 @@
 {
-	"name": "pipeline1_copy1",
+	"name": "copymultifilewithparameter",
 	"properties": {
-		"activities": [
-			{
-				"name": "Wait1",
-				"type": "Wait",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 1
-				}
-			}
-		],
 		"annotations": []
 	}
 }
