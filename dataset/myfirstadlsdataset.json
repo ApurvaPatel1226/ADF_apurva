@@ -11,7 +11,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "employees.csv",
+				"folderPath": "firstdata",
 				"fileSystem": "myoutputdataadls"
 			},
 			"columnDelimiter": ",",
