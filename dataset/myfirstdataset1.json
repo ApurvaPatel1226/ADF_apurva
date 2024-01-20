@@ -6,27 +6,13 @@
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"File_Path": {
-				"type": "string"
-			},
-			"File_Name": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": {
-					"value": "@dataset().File_Name",
-					"type": "Expression"
-				},
-				"container": {
-					"value": "@dataset().File_Path",
-					"type": "Expression"
-				}
+				"fileName": "employeesnew.csv",
+				"container": "inputdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
