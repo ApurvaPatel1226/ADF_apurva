@@ -34,7 +34,7 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ""
+							"fileExtension": ".csv"
 						}
 					},
 					"enableStaging": false,
@@ -89,9 +89,6 @@
 			"File_Path": {
 				"type": "string",
 				"defaultValue": "inputdata"
-			},
-			"File_Name": {
-				"type": "string"
 			}
 		},
 		"annotations": []
