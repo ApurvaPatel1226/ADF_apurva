@@ -1,9 +1,7 @@
 {
-	"name": "pipeline1",
+	"name": "pipeline1_copy1",
 	"properties": {
 		"activities": [
-
-			},
 			{
 				"name": "Wait1",
 				"type": "Wait",
@@ -12,7 +10,6 @@
 				"typeProperties": {
 					"waitTimeInSeconds": 1
 				}
-
 			}
 		],
 		"annotations": []
