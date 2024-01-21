@@ -13,7 +13,12 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "filedeleted",
+						"value": "all text fille get deleted"
+					}
+				],
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "dsfordelete",
