@@ -16,11 +16,8 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "Parent_Path",
-						"type": "DatasetReference",
-						"parameters": {
-							"Container_Name": "inputdata"
-						}
+						"referenceName": "myfirstdataset1",
+						"type": "DatasetReference"
 					},
 					"fieldList": [
 						"childItems"
@@ -70,6 +67,7 @@
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
+										"wildcardFileName": "*",
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
@@ -96,13 +94,7 @@
 							"inputs": [
 								{
 									"referenceName": "myfirstdataset1",
-									"type": "DatasetReference",
-									"parameters": {
-										"filename": {
-											"value": "@item().name",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
@@ -123,11 +115,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"filename": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
