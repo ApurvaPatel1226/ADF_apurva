@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "myfirstdataset1",
+						"referenceName": "dsazureblobmultiplefileread",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
