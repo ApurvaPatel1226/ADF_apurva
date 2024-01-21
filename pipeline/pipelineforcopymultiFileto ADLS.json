@@ -1,9 +1,9 @@
 {
-	"name": "copydatatoadlspipline",
+	"name": "pipelineforcopymultiFileto ADLS",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Copymultifileto Blob to ADLS",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -20,6 +20,7 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
+							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -34,24 +35,10 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ".csv"
+							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false,
-					"logSettings": {
-						"enableCopyActivityLog": true,
-						"copyActivityLogSettings": {
-							"logLevel": "Warning",
-							"enableReliableLogging": false
-						},
-						"logLocationSettings": {
-							"linkedServiceName": {
-								"referenceName": "AzureBlobStorage1",
-								"type": "LinkedServiceReference"
-							},
-							"path": "outputdata"
-						}
-					},
 					"translator": {
 						"type": "TabularTranslator",
 						"typeConversion": true,
@@ -63,7 +50,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "myfirstdataset1",
+						"referenceName": "DS_getmultifile",
 						"type": "DatasetReference"
 					}
 				],
@@ -75,12 +62,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"File_Path": {
-				"type": "string",
-				"defaultValue": "inputdata"
-			}
-		},
 		"annotations": []
 	}
 }

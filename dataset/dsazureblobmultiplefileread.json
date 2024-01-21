@@ -1,7 +1,6 @@
 {
-	"name": "myfirstdataset1",
+	"name": "dsazureblobmultiplefileread",
 	"properties": {
-		"description": "myfirstdataset1",
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
@@ -11,10 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"container": {
-					"value": "inputdata",
-					"type": "Expression"
-				}
+				"container": "inputdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

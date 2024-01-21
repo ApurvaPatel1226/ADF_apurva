@@ -1,5 +1,5 @@
 {
-	"name": "copydatatoadlspipline",
+	"name": "testpipline",
 	"properties": {
 		"activities": [
 			{
@@ -34,24 +34,10 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ".csv"
+							"fileExtension": ""
 						}
 					},
 					"enableStaging": false,
-					"logSettings": {
-						"enableCopyActivityLog": true,
-						"copyActivityLogSettings": {
-							"logLevel": "Warning",
-							"enableReliableLogging": false
-						},
-						"logLocationSettings": {
-							"linkedServiceName": {
-								"referenceName": "AzureBlobStorage1",
-								"type": "LinkedServiceReference"
-							},
-							"path": "outputdata"
-						}
-					},
 					"translator": {
 						"type": "TabularTranslator",
 						"typeConversion": true,
@@ -75,12 +61,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"File_Path": {
-				"type": "string",
-				"defaultValue": "inputdata"
-			}
-		},
 		"annotations": []
 	}
 }
