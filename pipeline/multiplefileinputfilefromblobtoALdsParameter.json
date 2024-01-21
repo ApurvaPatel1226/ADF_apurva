@@ -36,7 +36,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Getdatafromblob",
+						"activity": "Filter1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -45,7 +45,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Getdatafromblob').output.childItems",
+						"value": "@activity('Filter1').output.value",
 						"type": "Expression"
 					},
 					"activities": [
@@ -67,7 +67,10 @@
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
 										"recursive": true,
-										"wildcardFileName": "*.csv",
+										"wildcardFileName": {
+											"value": "@item().name",
+											"type": "Expression"
+										},
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
@@ -93,7 +96,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "myfirstdataset1",
+									"referenceName": "dsazureblobmultiplefileread",
 									"type": "DatasetReference"
 								}
 							],
@@ -112,6 +115,29 @@
 							]
 						}
 					]
+				}
+			},
+			{
+				"name": "Filter1",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "Getdatafromblob",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Getdatafromblob').output.childItems",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(item().type,'File')",
+						"type": "Expression"
+					}
 				}
 			}
 		],
