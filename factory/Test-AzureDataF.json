@@ -1,5 +1,13 @@
 {
 	"name": "Test-AzureDataF",
+	"properties": {
+		"globalParameters": {
+			"Env": {
+				"type": "string",
+				"value": "devenv"
+			}
+		}
+	},
 	"location": "eastus",
 	"identity": {
 		"type": "SystemAssigned",
