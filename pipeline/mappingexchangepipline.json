@@ -44,7 +44,7 @@
 							{
 								"source": {
 									"name": "JOB_ID",
-									"type": "Int32",
+									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
