@@ -18,7 +18,7 @@
 					"source": {
 						"type": "DelimitedTextSource",
 						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
+							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
@@ -50,7 +50,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "myfirstdataset1",
+						"referenceName": "dsforadlssink",
 						"type": "DatasetReference"
 					}
 				],
