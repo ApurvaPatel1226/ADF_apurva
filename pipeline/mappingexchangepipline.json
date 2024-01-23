@@ -92,7 +92,7 @@
 							{
 								"source": {
 									"name": "PHONE_NUMBER",
-									"type": "Int32",
+									"type": "Int16",
 									"physicalType": "String"
 								},
 								"sink": {
