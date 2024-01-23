@@ -5,7 +5,10 @@
 			"referenceName": "AzureSqlDatabase1",
 			"type": "LinkedServiceReference",
 			"parameters": {
-				"DB name": "dbsqlforadftraining"
+				"DB name": {
+					"value": "@dataset().dbnamedataset",
+					"type": "Expression"
+				}
 			}
 		},
 		"parameters": {
@@ -13,6 +16,9 @@
 				"type": "string"
 			},
 			"tablename": {
+				"type": "string"
+			},
+			"dbnamedataset": {
 				"type": "string"
 			}
 		},
