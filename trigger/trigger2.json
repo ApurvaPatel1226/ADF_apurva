@@ -8,6 +8,9 @@
 				"pipelineReference": {
 					"referenceName": "AddLogentryUseystemvariable",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"executeddate": "@formatDateTime(@trigger().scheduledTime,'YYYY-MM-DD')"
 				}
 			}
 		],
