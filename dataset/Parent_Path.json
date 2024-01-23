@@ -1,10 +1,14 @@
 {
-	"name": "myfirstdataset1",
+	"name": "Parent_Path",
 	"properties": {
-		"description": "myfirstdataset1",
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Container_Name": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
@@ -12,13 +16,13 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"container": {
-					"value": "inputdata",
+					"value": "@dataset().Container_Name",
 					"type": "Expression"
 				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
-			"firstRowAsHeader": true,
+			"firstRowAsHeader": false,
 			"quoteChar": "\""
 		},
 		"schema": []

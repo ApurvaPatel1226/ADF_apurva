@@ -1,20 +1,25 @@
 {
-	"name": "myfirstdataset1",
+	"name": "DS_getmultifile",
 	"properties": {
-		"description": "myfirstdataset1",
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"container": {
-					"value": "inputdata",
+				"fileName": {
+					"value": "@dataset().filename",
 					"type": "Expression"
-				}
+				},
+				"container": "inputdata"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
