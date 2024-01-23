@@ -1,0 +1,30 @@
+{
+	"name": "triggers",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "parameterizedcopysqltabletoanother",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"schemanmfrmpipline": "test",
+					"dbnmfrmpipline": "dbsqlforadftraining",
+					"sorcetableschemanmfrmpipline": "employees",
+					"desttableschemanmfrmpipline": "departments"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2024-01-23T06:54:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
