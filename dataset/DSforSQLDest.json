@@ -1,0 +1,24 @@
+{
+	"name": "DSforSQLDest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LSforSQLDBnormal",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "test",
+			"table": {
+				"value": "@dataset().tablename",
+				"type": "Expression"
+			}
+		}
+	}
+}
