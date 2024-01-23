@@ -116,6 +116,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"executeddate": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
