@@ -104,12 +104,6 @@
 								"value": "@pipeline().TriggerId",
 								"type": "Expression"
 							}
-						},
-						"lastmodifieddate": {
-							"value": {
-								"value": "@pipeline().TriggerTime",
-								"type": "Expression"
-							}
 						}
 					}
 				},
