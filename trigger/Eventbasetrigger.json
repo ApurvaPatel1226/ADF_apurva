@@ -1,0 +1,27 @@
+{
+	"name": "Eventbasetrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EventbasedHouryfilepasstosql",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"filenm": "@triggerBody.filename"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/eventsource/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/2c504fe5-3c1f-4707-a2fd-8734385c4edc/resourceGroups/ADF_Training/providers/Microsoft.Storage/storageAccounts/newblobfirststorage",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
