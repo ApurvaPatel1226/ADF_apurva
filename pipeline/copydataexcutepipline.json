@@ -30,7 +30,7 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -56,7 +56,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "dseventsource",
+						"referenceName": "dsforadlssink",
 						"type": "DatasetReference"
 					}
 				]
