@@ -61,8 +61,8 @@
 				]
 			},
 			{
-				"name": "Stored procedure1",
-				"type": "SqlServerStoredProcedure",
+				"name": "Lookup1",
+				"type": "Lookup",
 				"dependsOn": [
 					{
 						"activity": "Getdatafromblob and insert into another blob",
@@ -80,44 +80,44 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureParameters": {
-						"adfname": {
-							"value": {
-								"value": "@pipeline().DataFactory",
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "parameteriseddataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"Schemaname": {
+								"value": "@pipeline().parameters.Schemn",
 								"type": "Expression"
-							}
-						},
-						"piplinename": {
-							"value": {
-								"value": "@pipeline().Pipeline",
+							},
+							"tablename": {
+								"value": "@pipeline().parameters.tbn",
 								"type": "Expression"
-							}
-						},
-						"piprunid": {
-							"value": {
-								"value": "@pipeline().RunId",
-								"type": "Expression"
-							}
-						},
-						"tiggerid": {
-							"value": {
-								"value": "@pipeline().TriggerId",
+							},
+							"dbnamedataset": {
+								"value": "@pipeline().parameters.dbnm",
 								"type": "Expression"
 							}
 						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference",
-					"parameters": {
-						"DB name": "dbsqlforadftraining"
-					}
+					},
+					"firstRowOnly": true
 				}
 			}
 		],
 		"parameters": {
 			"executeddate": {
+				"type": "string"
+			},
+			"Schemn": {
+				"type": "string"
+			},
+			"tbn": {
+				"type": "string"
+			},
+			"dbnm": {
 				"type": "string"
 			}
 		},
