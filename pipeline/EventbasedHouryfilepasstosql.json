@@ -88,7 +88,13 @@
 							"outputs": [
 								{
 									"referenceName": "DSforSQLDest",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"tablename": {
+											"value": "@variables('filetype')",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
