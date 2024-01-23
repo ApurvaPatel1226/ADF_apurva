@@ -2,7 +2,7 @@
 	"name": "DSforSQLDest",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabase1",
+			"referenceName": "LSforSQLDBnormal",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
