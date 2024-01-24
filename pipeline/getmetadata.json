@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Metadata1",
+				"name": "Get Metadataof input file",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -13,20 +13,43 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "dsforadlssink",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"lastModified"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
 			},
 			{
-				"name": "If Condition1",
+				"name": "checklastmodifieddate",
+				"description": "checklastmodifieddate",
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata1",
+						"activity": "Get Metadataof input file",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(formatDatetime(utcnow(),'yyyy-mm-dd'),formatDatetime(activity('Get Metadataof input file').output.lastModified,'yyyy-mm-dd'))",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
