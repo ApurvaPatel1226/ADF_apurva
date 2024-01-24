@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@pipeline().parameters.outputfolder",
+						"value": "@activity('Copy data1').output.value",
 						"type": "Expression"
 					},
 					"isSequential": true,
@@ -28,14 +28,13 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "DelimitedTextSource",
+									"type": "BinarySource",
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
+										"recursive": true
 									},
 									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
+										"type": "BinaryReadSettings"
 									}
 								},
 								"sink": {
@@ -48,7 +47,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "dsforinputsourceblob",
+									"referenceName": "dsinputsorceblobbinary",
 									"type": "DatasetReference"
 								}
 							],
@@ -72,7 +71,7 @@
 		"parameters": {
 			"outputfolder": {
 				"type": "array",
-				"defaultValue": "[out1,out2,out3]"
+				"defaultValue": "[inputdata,inputsource,outputdata]"
 			}
 		},
 		"annotations": []
