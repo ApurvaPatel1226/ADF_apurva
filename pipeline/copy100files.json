@@ -32,10 +32,23 @@
 				}
 			},
 			{
-				"name": "Filter1",
+				"name": "Filterfiles",
 				"type": "Filter",
-				"dependsOn": [],
-				"userProperties": []
+				"dependsOn": [
+					{
+						"activity": "Get Metadatafrominput files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadatafrominput files').output.childItems",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
