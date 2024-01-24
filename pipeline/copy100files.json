@@ -47,6 +47,10 @@
 					"items": {
 						"value": "@activity('Get Metadatafrominput files').output.childItems",
 						"type": "Expression"
+					},
+					"condition": {
+						"value": "@startswith(item().name,'houseprice')",
+						"type": "Expression"
 					}
 				}
 			}
