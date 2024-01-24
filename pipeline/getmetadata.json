@@ -46,7 +46,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(formatDatetime(utcnow(),'yyyy-mm-dd'),formatDatetime(activity('Get Metadataof input file').output.lastModified,'yyyy-mm-dd'))",
+						"value": "@greater(formatDatetime(utcnow(),'yyyy-mm-dd'),formatDatetime(activity('Get Metadataof input file').output.lastModified,'yyyy-mm-dd'))",
 						"type": "Expression"
 					},
 					"ifFalseActivities": [
