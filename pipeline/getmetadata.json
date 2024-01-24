@@ -16,14 +16,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "dsforinputsourceblob",
+						"referenceName": "dsforadlssink",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
 						"lastModified"
 					],
 					"storeSettings": {
-						"type": "AzureBlobStorageReadSettings",
+						"type": "AzureBlobFSReadSettings",
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -66,7 +66,7 @@
 								"source": {
 									"type": "DelimitedTextSource",
 									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
+										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
 										"wildcardFileName": "*",
 										"enablePartitionDiscovery": false
@@ -98,7 +98,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "dsforinputsourceblob",
+									"referenceName": "dsforadlssink",
 									"type": "DatasetReference"
 								}
 							],
@@ -127,7 +127,7 @@
 								"source": {
 									"type": "DelimitedTextSource",
 									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
+										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
 										"wildcardFileName": "*",
 										"enablePartitionDiscovery": false
@@ -139,7 +139,7 @@
 								"sink": {
 									"type": "DelimitedTextSink",
 									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
+										"type": "AzureBlobStorageWriteSettings"
 									},
 									"formatSettings": {
 										"type": "DelimitedTextWriteSettings",
@@ -159,13 +159,13 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "dsforinputsourceblob",
+									"referenceName": "dsforadlssink",
 									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
 								{
-									"referenceName": "dsforadlssink",
+									"referenceName": "DSfornewsink",
 									"type": "DatasetReference"
 								}
 							]
