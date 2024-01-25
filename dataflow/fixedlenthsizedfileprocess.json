@@ -25,7 +25,10 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> Gettextfile",
-				"Gettextfile derive(empid = substring(Column_1,1,4)) ~> Addcolumn"
+				"Gettextfile derive(empid = substring(Column_1,1,4),",
+				"          name = substring(Column_1,5,10),",
+				"          state = substring(Column_1,12,13),",
+				"          salary = substring(Column_1,14,19)) ~> Addcolumn"
 			]
 		}
 	}
