@@ -21,7 +21,7 @@
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "@adddays(utcnow(),-3)",
+								"value": "@addDays(utcNow(),-3)",
 								"type": "Expression"
 							},
 							"modifiedDatetimeEnd": {
@@ -64,7 +64,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Dsgetallfilefromblob",
+						"referenceName": "dsblobforfileoutput",
 						"type": "DatasetReference"
 					}
 				]
