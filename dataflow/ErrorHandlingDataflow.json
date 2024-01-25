@@ -31,8 +31,7 @@
 			],
 			"transformations": [
 				{
-					"name": "ErrorRow",
-					"description": "Add cases to distribute the data in multiple groupsErrorRow"
+					"name": "ErrorRow"
 				},
 				{
 					"name": "AddfilenamecolumninErrorRowtable"
@@ -53,7 +52,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> sourcedatafromfinalfolder",
-				"sourcedatafromfinalfolder split(isNull(toDate(HIRE_DATE,'dd-mm-yy')),",
+				"sourcedatafromfinalfolder split(isNull(toDate(HIRE_DATE,'dd-MMM-yy')),",
 				"     disjoint: false) ~> ErrorRow@(ErrorRow, goodrows)",
 				"ErrorRow@ErrorRow derive(Filename = 'employeesErr.csv') ~> AddfilenamecolumninErrorRowtable",
 				"ErrorRow@goodrows derive(Filename = 'employeesErr.csv') ~> AddfilenameforGoodRows",
