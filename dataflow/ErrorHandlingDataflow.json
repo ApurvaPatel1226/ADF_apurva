@@ -54,7 +54,8 @@
 				"          LAST_NAME as string,",
 				"          EMAIL as string,",
 				"          HIRE_DATE as string,",
-				"          SALARY as integer",
+				"          SALARY as integer,",
+				"          Filename as string",
 				"     ),",
 				"     deletable:false,",
 				"     insertable:true,",
@@ -70,7 +71,8 @@
 				"          LAST_NAME,",
 				"          EMAIL,",
 				"          HIRE_DATE,",
-				"          SALARY",
+				"          SALARY,",
+				"          Filename",
 				"     )) ~> sink1"
 			]
 		}
