@@ -1,0 +1,25 @@
+{
+	"name": "ErrorHandlingDataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DSADLSFinalOutput",
+						"type": "DatasetReference"
+					},
+					"name": "sourcedatafromfinalfolder",
+					"description": "sourcedatafromfinalfolder"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourcedatafromfinalfolder"
+			]
+		}
+	}
+}
