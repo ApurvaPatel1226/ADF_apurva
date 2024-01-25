@@ -51,7 +51,7 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "CopyEachfile",
+							"name": "CopyEachfiletosink",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
