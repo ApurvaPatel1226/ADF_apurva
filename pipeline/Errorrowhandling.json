@@ -3,7 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Errorrowhandling",
+				"name": "Errorrowhandlingpipeline",
+				"description": "Errorrowhandlingpipeline",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
