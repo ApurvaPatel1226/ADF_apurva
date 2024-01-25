@@ -33,6 +33,10 @@
 				"name": "SALARY",
 				"type": "int",
 				"precision": 10
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
 			}
 		],
 		"typeProperties": {
