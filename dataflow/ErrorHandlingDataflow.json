@@ -13,7 +13,15 @@
 					"description": "sourcedatafromfinalfolder"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DSforErroRowinEmployeeErrolog",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "ErrorRow",
@@ -37,7 +45,33 @@
 				"     ignoreNoFilesFound: false) ~> sourcedatafromfinalfolder",
 				"sourcedatafromfinalfolder split(isNull(toDate(HIRE_DATE,'dd-mm-yy')),",
 				"     disjoint: false) ~> ErrorRow@(ErrorRow, goodrows)",
-				"ErrorRow@ErrorRow derive(Filename = 'employeesErr.csv') ~> derivedColumn1"
+				"ErrorRow@ErrorRow derive(Filename = 'employeesErr.csv') ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          EMPLOYEE_ID as integer,",
+				"          FIRST_NAME as string,",
+				"          LAST_NAME as string,",
+				"          EMAIL as string,",
+				"          HIRE_DATE as string,",
+				"          SALARY as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          EMPLOYEE_ID,",
+				"          FIRST_NAME,",
+				"          LAST_NAME,",
+				"          EMAIL,",
+				"          HIRE_DATE,",
+				"          SALARY",
+				"     )) ~> sink1"
 			]
 		}
 	}
