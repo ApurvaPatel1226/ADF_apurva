@@ -19,14 +19,14 @@
 						"referenceName": "DSforErroRowinEmployeeErrolog",
 						"type": "DatasetReference"
 					},
-					"name": "sinktoErrorlohtable"
+					"name": "sinktoErrorlogtable"
 				},
 				{
 					"dataset": {
 						"referenceName": "DSsltabelemployeeErr",
 						"type": "DatasetReference"
 					},
-					"name": "sinkErrorLogTbl"
+					"name": "GoodRowTable"
 				}
 			],
 			"transformations": [
@@ -84,7 +84,7 @@
 				"          HIRE_DATE,",
 				"          SALARY,",
 				"          Filename",
-				"     )) ~> sinktoErrorlohtable",
+				"     )) ~> sinktoErrorlogtable",
 				"AddfilenameforGoodRows sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
@@ -112,7 +112,7 @@
 				"          HIRE_DATE,",
 				"          SALARY,",
 				"          Filename",
-				"     )) ~> sinkErrorLogTbl"
+				"     )) ~> GoodRowTable"
 			]
 		}
 	}
