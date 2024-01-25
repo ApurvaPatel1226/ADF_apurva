@@ -19,14 +19,11 @@
 				}
 			],
 			"scriptLines": [
-				"source(output(",
-				"          Column_1 as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
+				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> Gettextfile",
 				"Gettextfile derive(empid = substring(Column_1,1,4),",
-				"          name = substring(Column_1,5,9),",
+				"          name = substring(Column_1, 5, 9),",
 				"          state = substring(Column_1,11,12),",
 				"          salary = substring(Column_1,13,18)) ~> Addcolumn"
 			]
