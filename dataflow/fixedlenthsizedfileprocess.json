@@ -12,10 +12,21 @@
 					"name": "Gettextfile"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dsblobforfileoutput",
+						"type": "DatasetReference"
+					},
+					"name": "sinktoCSVfile"
+				}
+			],
 			"transformations": [
 				{
 					"name": "Addcolumn"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -26,9 +37,21 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> Gettextfile",
 				"Gettextfile derive(empid = substring(Column_1,1,4),",
-				"          name = substring(Column_1, 5, 9),",
-				"          state = substring(Column_1,11,12),",
-				"          salary = substring(Column_1,13,18)) ~> Addcolumn"
+				"          name = substring(Column_1,5,9),",
+				"          state = substring(Column_1,10,11),",
+				"          salary = substring(Column_1,13,18)) ~> Addcolumn",
+				"Addcolumn select(mapColumn(",
+				"          empid,",
+				"          name,",
+				"          state,",
+				"          salary",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinktoCSVfile"
 			]
 		}
 	}
