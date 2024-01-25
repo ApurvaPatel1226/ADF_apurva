@@ -19,7 +19,7 @@
 						"referenceName": "DSforErroRowinEmployeeErrolog",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "sinktoErrorlohtable"
 				},
 				{
 					"dataset": {
@@ -35,7 +35,7 @@
 					"description": "Add cases to distribute the data in multiple groupsErrorRow"
 				},
 				{
-					"name": "derivedColumn1"
+					"name": "AddfilenamecolumninErrorRowtable"
 				},
 				{
 					"name": "AddfilenameforGoodRows"
@@ -55,9 +55,9 @@
 				"     ignoreNoFilesFound: false) ~> sourcedatafromfinalfolder",
 				"sourcedatafromfinalfolder split(isNull(toDate(HIRE_DATE,'dd-mm-yy')),",
 				"     disjoint: false) ~> ErrorRow@(ErrorRow, goodrows)",
-				"ErrorRow@ErrorRow derive(Filename = 'employeesErr.csv') ~> derivedColumn1",
+				"ErrorRow@ErrorRow derive(Filename = 'employeesErr.csv') ~> AddfilenamecolumninErrorRowtable",
 				"ErrorRow@goodrows derive(Filename = 'employeesErr.csv') ~> AddfilenameforGoodRows",
-				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"AddfilenamecolumninErrorRowtable sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          EMPLOYEE_ID as integer,",
@@ -84,7 +84,7 @@
 				"          HIRE_DATE,",
 				"          SALARY,",
 				"          Filename",
-				"     )) ~> sink1",
+				"     )) ~> sinktoErrorlohtable",
 				"AddfilenameforGoodRows sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
