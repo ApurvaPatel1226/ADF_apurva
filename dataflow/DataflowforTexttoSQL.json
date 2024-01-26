@@ -23,6 +23,10 @@
 			],
 			"transformations": [],
 			"scriptLines": [
+				"parameters{",
+				"     SQLtableschema as string ('test'),",
+				"     SQLtablename as string ('employeePay')",
+				"}",
 				"source(output(",
 				"          Date as string,",
 				"          Salesman as string,",

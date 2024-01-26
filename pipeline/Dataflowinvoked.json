@@ -16,8 +16,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "fixedlenthsizedfileprocess",
-						"type": "DataFlowReference"
+						"referenceName": "DataflowforTexttoSQL",
+						"type": "DataFlowReference",
+						"parameters": {
+							"SQLtableschema": "'test'",
+							"SQLtablename": "'employeePay'"
+						}
 					},
 					"compute": {
 						"coreCount": 8,
