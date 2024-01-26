@@ -17,13 +17,27 @@
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "empid",
+				"name": "id",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "salary",
+				"name": "name",
 				"type": "varchar"
+			},
+			{
+				"name": "salary",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gender",
+				"type": "varchar"
+			},
+			{
+				"name": "deptno",
+				"type": "int",
+				"precision": 10
 			}
 		],
 		"typeProperties": {
