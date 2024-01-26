@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "20010123_sales.txt",
+				"fileName": "employeePay.txt",
 				"fileSystem": "conatinerx"
 			},
 			"columnDelimiter": ",",
