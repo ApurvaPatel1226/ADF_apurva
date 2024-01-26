@@ -20,15 +20,7 @@
 		},
 		"schema": [
 			{
-				"name": "Date",
-				"type": "String"
-			},
-			{
-				"name": "Salesman",
-				"type": "String"
-			},
-			{
-				"name": "Revenue",
+				"name": "id\tname\t salary  gender deptnio",
 				"type": "String"
 			}
 		]
