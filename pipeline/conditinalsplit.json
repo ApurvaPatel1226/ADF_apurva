@@ -25,7 +25,9 @@
 							}
 						}
 					},
-					"fieldList": [],
+					"fieldList": [
+						"childItems"
+					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
 						"enablePartitionDiscovery": false
@@ -83,6 +85,11 @@
 												"storeSettings": {
 													"type": "AzureBlobFSReadSettings",
 													"recursive": true,
+													"wildcardFolderPath": {
+														"value": "@item().name",
+														"type": "Expression"
+													},
+													"wildcardFileName": "*",
 													"enablePartitionDiscovery": false
 												},
 												"formatSettings": {
@@ -156,7 +163,7 @@
 													"type": "AzureBlobFSReadSettings",
 													"recursive": true,
 													"wildcardFolderPath": {
-														"value": "@activity('Get Metadata1').output.childItems.item().name",
+														"value": "@item().name",
 														"type": "Expression"
 													},
 													"wildcardFileName": "*",
