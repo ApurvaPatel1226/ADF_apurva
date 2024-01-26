@@ -225,10 +225,12 @@
 				"defaultValue": "conatinerx"
 			},
 			"Foldertarget1": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "target1"
 			},
 			"Foldertarget2": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "target2"
 			}
 		},
 		"annotations": []
