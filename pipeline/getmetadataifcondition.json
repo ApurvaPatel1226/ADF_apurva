@@ -45,7 +45,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@startswith(activity('Get Metadata1').output.childItems.item().name,'b')",
+						"value": "@startswith(activity('Get Metadata1').output.childItems.item().name,",
 						"type": "Expression"
 					},
 					"ifFalseActivities": [
