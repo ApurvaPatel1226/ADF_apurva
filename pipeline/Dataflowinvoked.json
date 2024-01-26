@@ -56,7 +56,7 @@
 			},
 			"File_Name": {
 				"type": "string",
-				"defaultValue": "EmployeePay.txt"
+				"defaultValue": "employeePay.txt"
 			},
 			"Schema_Name": {
 				"type": "string",
