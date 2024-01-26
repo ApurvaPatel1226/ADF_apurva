@@ -10,8 +10,14 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "employeePay.txt",
-				"fileSystem": "conatinerx"
+				"fileName": {
+					"value": "employeePay.txt",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "conatinerx",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

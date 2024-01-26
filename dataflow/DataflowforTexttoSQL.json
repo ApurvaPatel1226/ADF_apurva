@@ -5,11 +5,14 @@
 		"typeProperties": {
 			"sources": [
 				{
+					"name": "source1"
+				},
+				{
 					"dataset": {
 						"referenceName": "dsadlscontainerxwithfile",
 						"type": "DatasetReference"
 					},
-					"name": "sourcefromTextADLS"
+					"name": "source2"
 				}
 			],
 			"sinks": [
@@ -27,13 +30,12 @@
 				"     SQLtableschema as string ('test'),",
 				"     SQLtablename as string ('employeePay')",
 				"}",
-				"source(output(",
-				"          {id     name      salary  gender deptnio} as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> source1",
+				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> sourcefromTextADLS",
-				"sourcefromTextADLS sink(allowSchemaDrift: true,",
+				"     ignoreNoFilesFound: false) ~> source2",
+				"source2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          id as integer,",
@@ -49,7 +51,10 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sinktodbtable"
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          id = {id     name      salary  gender deptnio}",
+				"     )) ~> sinktodbtable"
 			]
 		}
 	}
