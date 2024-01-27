@@ -1,5 +1,5 @@
 {
-	"name": "dataflow2",
+	"name": "UnionDataflow",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -19,8 +19,16 @@
 					"name": "sourceADLSfile2"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
+			"sinks": [
+				{
+					"name": "sinktoUnionResults"
+				}
+			],
+			"transformations": [
+				{
+					"name": "union1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          id as short,",
@@ -33,15 +41,20 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> sourceADLSfile1",
 				"source(output(",
-				"          id as string,",
+				"          id as short,",
 				"          name as string,",
-				"          salary as string,",
+				"          salary as integer,",
 				"          gender as string,",
-				"          deptnio as string",
+				"          deptnio as short",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> sourceADLSfile2"
+				"     ignoreNoFilesFound: false) ~> sourceADLSfile2",
+				"sourceADLSfile1, sourceADLSfile2 union(byName: true)~> union1",
+				"union1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinktoUnionResults"
 			]
 		}
 	}
