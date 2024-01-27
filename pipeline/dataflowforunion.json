@@ -78,7 +78,7 @@
 			},
 			"fileunion": {
 				"type": "string",
-				"defaultValue": "Unionfiles.csv"
+				"defaultValue": "Unionfiles.txt"
 			}
 		},
 		"annotations": []
