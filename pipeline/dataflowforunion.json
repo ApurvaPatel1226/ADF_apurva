@@ -72,13 +72,9 @@
 				"type": "string",
 				"defaultValue": "ITdepartEmp.txt"
 			},
-			"folderunion": {
+			"tablename": {
 				"type": "string",
-				"defaultValue": "unionfiles"
-			},
-			"fileunion": {
-				"type": "string",
-				"defaultValue": "Unionfiles.txt"
+				"defaultValue": "employeePay"
 			}
 		},
 		"annotations": []
