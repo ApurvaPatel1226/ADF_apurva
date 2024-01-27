@@ -17,7 +17,39 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "UnionDataflow",
-						"type": "DataFlowReference"
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"sourceADLSfile1": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.foldername",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.filnameS1",
+									"type": "Expression"
+								}
+							},
+							"sourceADLSfile2": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.foldername",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.filnameS2",
+									"type": "Expression"
+								}
+							},
+							"sinktoUnionResults": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.folderunion",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.fileunion",
+									"type": "Expression"
+								}
+							}
+						}
 					},
 					"compute": {
 						"coreCount": 8,
@@ -27,6 +59,28 @@
 				}
 			}
 		],
+		"parameters": {
+			"foldername": {
+				"type": "string",
+				"defaultValue": "conatinerx"
+			},
+			"filnameS1": {
+				"type": "string",
+				"defaultValue": "employeePay.txt"
+			},
+			"filnameS2": {
+				"type": "string",
+				"defaultValue": "ITdepartEmp.txt"
+			},
+			"folderunion": {
+				"type": "string",
+				"defaultValue": "unionfiles"
+			},
+			"fileunion": {
+				"type": "string",
+				"defaultValue": "Unionfiles.csv"
+			}
+		},
 		"annotations": []
 	}
 }
