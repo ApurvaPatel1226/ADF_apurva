@@ -21,6 +21,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "dsadlscontainerxwithfile",
+						"type": "DatasetReference"
+					},
 					"name": "sinktoUnionResults"
 				}
 			],
@@ -53,8 +57,25 @@
 				"sourceADLSfile1, sourceADLSfile2 union(byName: true)~> union1",
 				"union1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          id as string,",
+				"          name as string,",
+				"          salary as string,",
+				"          gender as string,",
+				"          deptnio as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sinktoUnionResults"
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          id,",
+				"          name,",
+				"          salary,",
+				"          gender,",
+				"          deptnio",
+				"     )) ~> sinktoUnionResults"
 			]
 		}
 	}
