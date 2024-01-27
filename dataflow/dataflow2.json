@@ -1,0 +1,48 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dsadlscontainerxwithfile",
+						"type": "DatasetReference"
+					},
+					"name": "sourceADLSfile1"
+				},
+				{
+					"dataset": {
+						"referenceName": "dsadlscontainerxwithfile",
+						"type": "DatasetReference"
+					},
+					"name": "sourceADLSfile2"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          id as short,",
+				"          name as string,",
+				"          salary as integer,",
+				"          gender as string,",
+				"          deptnio as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourceADLSfile1",
+				"source(output(",
+				"          id as string,",
+				"          name as string,",
+				"          salary as string,",
+				"          gender as string,",
+				"          deptnio as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourceADLSfile2"
+			]
+		}
+	}
+}
