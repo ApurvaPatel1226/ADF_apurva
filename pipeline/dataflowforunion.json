@@ -40,12 +40,8 @@
 								}
 							},
 							"sinktoUnionResults": {
-								"Folder_Name": {
-									"value": "@pipeline().parameters.folderunion",
-									"type": "Expression"
-								},
-								"File_Name": {
-									"value": "@pipeline().parameters.fileunion",
+								"tablename": {
+									"value": "@pipeline().parameters.tablename",
 									"type": "Expression"
 								}
 							}
