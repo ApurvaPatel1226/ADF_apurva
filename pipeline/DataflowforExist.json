@@ -82,7 +82,7 @@
 			},
 			"sinkfile": {
 				"type": "string",
-				"defaultValue": "common.txt"
+				"defaultValue": "uncommon.txt"
 			}
 		},
 		"annotations": []
