@@ -19,7 +19,15 @@
 					"name": "sourcefile2"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DSblobDynamicfolderTrget",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "existsduplicated"
@@ -48,7 +56,11 @@
 				"     ignoreNoFilesFound: false) ~> sourcefile2",
 				"sourcefile1, sourcefile2 exists(sourcefile1@id == sourcefile2@id,",
 				"     negate:false,",
-				"     broadcast: 'auto')~> existsduplicated"
+				"     broadcast: 'auto')~> existsduplicated",
+				"existsduplicated sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}

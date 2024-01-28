@@ -38,6 +38,16 @@
 									"value": "@pipeline().parameters.f2",
 									"type": "Expression"
 								}
+							},
+							"sink1": {
+								"foldername": {
+									"value": "@pipeline().parameters.sinkfolder",
+									"type": "Expression"
+								},
+								"filename": {
+									"value": "@pipeline().parameters.sinkfile",
+									"type": "Expression"
+								}
 							}
 						}
 					},
@@ -65,6 +75,14 @@
 			"tablenme": {
 				"type": "string",
 				"defaultValue": "employeePay"
+			},
+			"sinkfolder": {
+				"type": "string",
+				"defaultValue": "conatinery"
+			},
+			"sinkfile": {
+				"type": "string",
+				"defaultValue": "common.txt"
 			}
 		},
 		"annotations": []
