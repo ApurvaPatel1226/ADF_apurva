@@ -84,7 +84,26 @@
 										"type": "DelimitedTextReadSettings"
 									}
 								},
-								"enableStaging": false
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
 							},
 							"inputs": [
 								{
@@ -101,6 +120,22 @@
 										}
 									}
 								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DsADLSdynamicfolder",
+									"type": "DatasetReference",
+									"parameters": {
+										"foldername": {
+											"value": "@pipeline().parameters.sinkfolder",
+											"type": "Expression"
+										},
+										"filenm": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								}
 							]
 						}
 					]
@@ -109,9 +144,13 @@
 		],
 		"parameters": {
 			"foldername": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "container1"
 			},
 			"filename": {
+				"type": "string"
+			},
+			"sinkfolder": {
 				"type": "string"
 			}
 		},
