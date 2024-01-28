@@ -74,6 +74,7 @@
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
+										"wildcardFileName": "*",
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
@@ -103,15 +104,11 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "DsADLSdynamicfolder",
+									"referenceName": "DSADLSdynamiconlyfolder",
 									"type": "DatasetReference",
 									"parameters": {
 										"foldername": {
-											"value": "@pipeline().parameters.foldername",
-											"type": "Expression"
-										},
-										"filenm": {
-											"value": "@pipeline().parameters.filename",
+											"value": "@item().name",
 											"type": "Expression"
 										}
 									}
@@ -119,15 +116,11 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DsADLSdynamicfolder",
+									"referenceName": "DSADLSdynamiconlyfolder",
 									"type": "DatasetReference",
 									"parameters": {
 										"foldername": {
 											"value": "@pipeline().parameters.sinkfolder",
-											"type": "Expression"
-										},
-										"filenm": {
-											"value": "@item().name",
 											"type": "Expression"
 										}
 									}
@@ -141,11 +134,11 @@
 		"parameters": {
 			"foldername": {
 				"type": "string",
-				"defaultValue": "container1"
+				"defaultValue": "inputfiles"
 			},
 			"sinkfolder": {
 				"type": "string",
-				"defaultValue": "inputfiles"
+				"defaultValue": "container1"
 			}
 		},
 		"annotations": []
