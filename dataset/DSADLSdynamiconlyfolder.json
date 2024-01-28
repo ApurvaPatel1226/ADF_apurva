@@ -1,0 +1,42 @@
+{
+	"name": "DSADLSdynamiconlyfolder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Salesman",
+				"type": "String"
+			},
+			{
+				"name": "Q1",
+				"type": "String"
+			},
+			{
+				"name": "Q2",
+				"type": "String"
+			},
+			{
+				"name": "Q3",
+				"type": "String"
+			},
+			{
+				"name": "Q4",
+				"type": "String"
+			}
+		]
+	}
+}
