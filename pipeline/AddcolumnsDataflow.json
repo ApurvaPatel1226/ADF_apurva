@@ -19,13 +19,23 @@
 						"referenceName": "dataflow2",
 						"type": "DataFlowReference",
 						"datasetParameters": {
-							"source1": {
+							"sourcefile": {
 								"Folder_Name": {
 									"value": "@pipeline().parameters.foldername",
 									"type": "Expression"
 								},
 								"File_Name": {
 									"value": "@pipeline().parameters.inputfile",
+									"type": "Expression"
+								}
+							},
+							"sink1": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.Sinkfoldername",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.outputfile",
 									"type": "Expression"
 								}
 							}
