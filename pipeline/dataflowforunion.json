@@ -71,6 +71,10 @@
 			"tablename": {
 				"type": "string",
 				"defaultValue": "employeePay"
+			},
+			"file3": {
+				"type": "string",
+				"defaultValue": "ITdepartEmppay.txt"
 			}
 		},
 		"annotations": []
