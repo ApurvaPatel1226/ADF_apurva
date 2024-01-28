@@ -15,6 +15,22 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dataflow2",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"source1": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.foldername",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.inputfile",
+									"type": "Expression"
+								}
+							}
+						}
+					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
@@ -23,6 +39,24 @@
 				}
 			}
 		],
+		"parameters": {
+			"foldername": {
+				"type": "string",
+				"defaultValue": "conatinerx"
+			},
+			"Sinkfoldername": {
+				"type": "string",
+				"defaultValue": "employeePay.txt"
+			},
+			"inputfile": {
+				"type": "string",
+				"defaultValue": "conatinery"
+			},
+			"outputfile": {
+				"type": "string",
+				"defaultValue": "addcolumn.txt"
+			}
+		},
 		"annotations": []
 	}
 }
