@@ -55,7 +55,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> sourcefile2",
 				"sourcefile1, sourcefile2 exists(sourcefile1@id == sourcefile2@id,",
-				"     negate:true,",
+				"     negate:false,",
 				"     broadcast: 'auto')~> existsduplicated",
 				"existsduplicated sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
