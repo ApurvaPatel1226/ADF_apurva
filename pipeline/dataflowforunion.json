@@ -39,6 +39,16 @@
 									"type": "Expression"
 								}
 							},
+							"source3": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.foldername",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.file3",
+									"type": "Expression"
+								}
+							},
 							"sinktoUnionResults": {
 								"tablename": {
 									"value": "@pipeline().parameters.tablename",
