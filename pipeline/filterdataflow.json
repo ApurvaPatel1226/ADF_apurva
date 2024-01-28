@@ -28,6 +28,16 @@
 									"value": "@pipeline().parameters.file",
 									"type": "Expression"
 								}
+							},
+							"sink1": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.sinkfolder",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.fS",
+									"type": "Expression"
+								}
 							}
 						}
 					},
@@ -47,6 +57,9 @@
 				"type": "string"
 			},
 			"sinkfolder": {
+				"type": "string"
+			},
+			"fS": {
 				"type": "string"
 			}
 		},
