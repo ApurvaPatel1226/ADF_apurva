@@ -15,6 +15,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dataflow2",
+						"type": "DataFlowReference"
+					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
@@ -23,6 +27,24 @@
 				}
 			}
 		],
+		"parameters": {
+			"folder": {
+				"type": "string",
+				"defaultValue": "conatinerx"
+			},
+			"f1": {
+				"type": "string",
+				"defaultValue": "ITdepartEmp.txt"
+			},
+			"f2": {
+				"type": "string",
+				"defaultValue": "ITdepartEmppay.txt"
+			},
+			"tablenme": {
+				"type": "string",
+				"defaultValue": "employeePay"
+			}
+		},
 		"annotations": []
 	}
 }
