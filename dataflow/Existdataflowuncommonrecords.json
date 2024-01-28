@@ -1,0 +1,77 @@
+{
+	"name": "Existdataflowuncommonrecords",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dsadlscontainerxwithfile",
+						"type": "DatasetReference"
+					},
+					"name": "sourcefile1"
+				},
+				{
+					"dataset": {
+						"referenceName": "dsadlscontainerxwithfile",
+						"type": "DatasetReference"
+					},
+					"name": "sourcefile2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DsADLSdynamicfolder",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "existsduplicated"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          id as short,",
+				"          name as string,",
+				"          salary as integer,",
+				"          gender as string,",
+				"          deptno as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourcefile1",
+				"source(output(",
+				"          id as short,",
+				"          name as string,",
+				"          salary as integer,",
+				"          gender as string,",
+				"          deptno as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourcefile2",
+				"sourcefile1, sourcefile2 exists(sourcefile1@id == sourcefile2@id,",
+				"     negate:true,",
+				"     broadcast: 'auto')~> existsduplicated",
+				"existsduplicated sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          id,",
+				"          name,",
+				"          salary,",
+				"          gender,",
+				"          deptno",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
