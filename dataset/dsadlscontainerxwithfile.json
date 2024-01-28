@@ -50,7 +50,7 @@
 				"type": "String"
 			},
 			{
-				"name": "deptnio",
+				"name": "deptno",
 				"type": "String"
 			}
 		]
