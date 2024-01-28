@@ -44,7 +44,7 @@
 									"value": "@pipeline().parameters.sinkfolder",
 									"type": "Expression"
 								},
-								"filename": {
+								"filenm": {
 									"value": "@pipeline().parameters.sinkfile",
 									"type": "Expression"
 								}
