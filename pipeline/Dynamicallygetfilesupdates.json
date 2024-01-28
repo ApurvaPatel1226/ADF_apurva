@@ -148,10 +148,12 @@
 				"defaultValue": "container1"
 			},
 			"filename": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "*"
 			},
 			"sinkfolder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "inputfiles"
 			}
 		},
 		"annotations": []
