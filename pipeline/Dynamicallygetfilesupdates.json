@@ -74,6 +74,10 @@
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
+										"wildcardFolderPath": {
+											"value": "@item().name",
+											"type": "Expression"
+										},
 										"wildcardFileName": "*.csv",
 										"enablePartitionDiscovery": false
 									},
@@ -108,7 +112,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"foldername": {
-											"value": "@item().name",
+											"value": "@pipeline().parameters.foldername",
 											"type": "Expression"
 										}
 									}
