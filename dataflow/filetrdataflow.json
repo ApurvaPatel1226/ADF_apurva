@@ -1,5 +1,5 @@
 {
-	"name": "dataflow2",
+	"name": "filetrdataflow",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -51,7 +51,14 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          id,",
+				"          name,",
+				"          salary,",
+				"          gender,",
+				"          deptno",
+				"     )) ~> sink1"
 			]
 		}
 	}
