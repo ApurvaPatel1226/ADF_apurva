@@ -78,7 +78,7 @@
 			},
 			"sinkfolder": {
 				"type": "string",
-				"defaultValue": "conatinery"
+				"defaultValue": "final"
 			},
 			"sinkfile": {
 				"type": "string",
