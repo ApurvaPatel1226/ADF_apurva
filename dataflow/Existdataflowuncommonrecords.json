@@ -21,16 +21,12 @@
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "DsADLSdynamicfolder",
-						"type": "DatasetReference"
-					},
 					"name": "sink1"
 				}
 			],
 			"transformations": [
 				{
-					"name": "existsduplicated"
+					"name": "exists1"
 				}
 			],
 			"scriptLines": [
@@ -54,23 +50,13 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> sourcefile2",
-				"sourcefile1, sourcefile2 exists(sourcefile1@id == sourcefile2@id,",
+				"sourcefile2, sourcefile1 exists(sourcefile2@id == sourcefile1@id,",
 				"     negate:true,",
-				"     broadcast: 'auto')~> existsduplicated",
-				"existsduplicated sink(allowSchemaDrift: true,",
+				"     broadcast: 'auto')~> exists1",
+				"exists1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     umask: 0022,",
-				"     preCommands: [],",
-				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     mapColumn(",
-				"          id,",
-				"          name,",
-				"          salary,",
-				"          gender,",
-				"          deptno",
-				"     )) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
