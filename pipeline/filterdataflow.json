@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "dataflow2",
+						"referenceName": "filetrdataflow",
 						"type": "DataFlowReference",
 						"datasetParameters": {
 							"sourcefile": {
@@ -51,16 +51,20 @@
 		],
 		"parameters": {
 			"folder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "conatinerx"
 			},
 			"file": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "employeePay.txt"
 			},
 			"sinkfolder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "conatinery"
 			},
 			"fS": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "fileroutput.txt"
 			}
 		},
 		"folder": {
