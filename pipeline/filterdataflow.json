@@ -15,6 +15,22 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dataflow2",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"sourcefile": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.folder",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.file",
+									"type": "Expression"
+								}
+							}
+						}
+					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
@@ -23,6 +39,14 @@
 				}
 			}
 		],
+		"parameters": {
+			"folder": {
+				"type": "string"
+			},
+			"file": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "test"
 		},
