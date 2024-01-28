@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "Existdataflow",
+						"referenceName": "Existdataflowuncommonrecords",
 						"type": "DataFlowReference",
 						"datasetParameters": {
 							"sourcefile1": {
