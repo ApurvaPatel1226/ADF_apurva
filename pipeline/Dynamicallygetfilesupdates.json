@@ -16,15 +16,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "DsADLSdynamicfolder",
+						"referenceName": "DSADLSdynamiconlyfolder",
 						"type": "DatasetReference",
 						"parameters": {
 							"foldername": {
 								"value": "@pipeline().parameters.foldername",
-								"type": "Expression"
-							},
-							"filenm": {
-								"value": "@pipeline().parameters.filename",
 								"type": "Expression"
 							}
 						}
@@ -146,10 +142,6 @@
 			"foldername": {
 				"type": "string",
 				"defaultValue": "container1"
-			},
-			"filename": {
-				"type": "string",
-				"defaultValue": "*"
 			},
 			"sinkfolder": {
 				"type": "string",
