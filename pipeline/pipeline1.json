@@ -20,7 +20,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.Filename",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -84,6 +87,10 @@
 			"Container_Name": {
 				"type": "string",
 				"defaultValue": "conatinerx"
+			},
+			"Filename": {
+				"type": "string",
+				"defaultValue": "employeePay.txt"
 			}
 		},
 		"folder": {
