@@ -23,7 +23,7 @@
 						"referenceName": "dsadlscontainerxwithfile",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "source3"
 				}
 			],
 			"sinks": [
@@ -38,6 +38,9 @@
 			"transformations": [
 				{
 					"name": "union1"
+				},
+				{
+					"name": "union2"
 				}
 			],
 			"scriptLines": [
@@ -62,17 +65,18 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> sourceADLSfile2",
 				"source(output(",
-				"          id as string,",
+				"          id as short,",
 				"          name as string,",
-				"          salary as string,",
+				"          salary as integer,",
 				"          gender as string,",
-				"          deptnio as string",
+				"          deptno as short",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
+				"     ignoreNoFilesFound: false) ~> source3",
 				"sourceADLSfile1, sourceADLSfile2 union(byName: true)~> union1",
-				"union1 sink(allowSchemaDrift: true,",
+				"union1, source3 union(byName: true)~> union2",
+				"union2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",
