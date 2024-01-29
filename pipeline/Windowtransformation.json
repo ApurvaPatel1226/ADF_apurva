@@ -47,6 +47,14 @@
 			"filename": {
 				"type": "string",
 				"defaultValue": "employeePay.txt"
+			},
+			"filsink": {
+				"type": "string",
+				"defaultValue": "addtotalcol.csv"
+			},
+			"sinkfol": {
+				"type": "string",
+				"defaultValue": "conatinerx"
 			}
 		},
 		"annotations": []

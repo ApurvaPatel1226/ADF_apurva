@@ -12,8 +12,20 @@
 					"name": "sourcefile"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dsadlscontainerxwithfile",
+						"type": "DatasetReference"
+					},
+					"name": "sink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "window1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          id as short,",
@@ -24,7 +36,23 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> sourcefile"
+				"     ignoreNoFilesFound: false) ~> sourcefile",
+				"sourcefile window(asc(deptno, true),",
+				"     RuntotalDeptno = sum(deptno)) ~> window1",
+				"window1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          id as string,",
+				"          name as string,",
+				"          salary as string,",
+				"          gender as string,",
+				"          deptno as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink"
 			]
 		}
 	}
