@@ -33,6 +33,10 @@
 								"foldername": {
 									"value": "@pipeline().parameters.sinkfol",
 									"type": "Expression"
+								},
+								"filenm": {
+									"value": "@pipeline().parameters.filsink",
+									"type": "Expression"
 								}
 							}
 						}
