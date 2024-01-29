@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "dsadlscontainerxwithfile",
+						"referenceName": "DSADLSdynamiconlyfolder",
 						"type": "DatasetReference"
 					},
 					"name": "sink"
@@ -42,11 +42,11 @@
 				"window1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
-				"          id as string,",
-				"          name as string,",
-				"          salary as string,",
-				"          gender as string,",
-				"          deptno as string",
+				"          Salesman as string,",
+				"          Q1 as string,",
+				"          Q2 as string,",
+				"          Q3 as string,",
+				"          Q4 as string",
 				"     ),",
 				"     umask: 0022,",
 				"     preCommands: [],",

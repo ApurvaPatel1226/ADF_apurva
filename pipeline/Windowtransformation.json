@@ -28,6 +28,12 @@
 									"value": "@pipeline().parameters.filename",
 									"type": "Expression"
 								}
+							},
+							"sink": {
+								"foldername": {
+									"value": "@pipeline().parameters.sinkfol",
+									"type": "Expression"
+								}
 							}
 						}
 					},
