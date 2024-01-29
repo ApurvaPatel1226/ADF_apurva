@@ -17,7 +17,19 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "dataflow2",
-						"type": "DataFlowReference"
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"sourcefile": {
+								"foldername": {
+									"value": "@pipeline().parameters.foldername",
+									"type": "Expression"
+								},
+								"filenm": {
+									"value": "@pipeline().parameters.filename",
+									"type": "Expression"
+								}
+							}
+						}
 					},
 					"compute": {
 						"coreCount": 8,
@@ -27,6 +39,16 @@
 				}
 			}
 		],
+		"parameters": {
+			"foldername": {
+				"type": "string",
+				"defaultValue": "conatinerx"
+			},
+			"filename": {
+				"type": "string",
+				"defaultValue": "employeePay.txt"
+			}
+		},
 		"annotations": []
 	}
 }
