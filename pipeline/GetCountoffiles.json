@@ -162,7 +162,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Folder_Name": {
-											"value": "@pipeline().parameters.folder",
+											"value": "@pipeline().parameters.sinkfolder",
 											"type": "Expression"
 										},
 										"File_Name": "*"
@@ -182,6 +182,10 @@
 			"subfolder": {
 				"type": "string",
 				"defaultValue": "sales"
+			},
+			"sinkfolder": {
+				"type": "string",
+				"defaultValue": "outputsales"
 			}
 		},
 		"variables": {
