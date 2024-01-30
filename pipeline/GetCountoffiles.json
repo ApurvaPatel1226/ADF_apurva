@@ -185,7 +185,7 @@
 			},
 			"sinkfolder": {
 				"type": "string",
-				"defaultValue": "outputsales"
+				"defaultValue": "conatinery"
 			}
 		},
 		"variables": {
