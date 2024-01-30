@@ -158,14 +158,13 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "dsadlscontainerxwithfile",
+									"referenceName": "DSADLSdynamiconlyfolder",
 									"type": "DatasetReference",
 									"parameters": {
-										"Folder_Name": {
+										"foldername": {
 											"value": "@pipeline().parameters.sinkfolder",
 											"type": "Expression"
-										},
-										"File_Name": "*"
+										}
 									}
 								}
 							]
