@@ -130,12 +130,6 @@
 			"SchemaS": {
 				"type": "string",
 				"defaultValue": "dbo"
-			},
-			"t": {
-				"type": "string"
-			},
-			"ts": {
-				"type": "string"
 			}
 		},
 		"annotations": []
