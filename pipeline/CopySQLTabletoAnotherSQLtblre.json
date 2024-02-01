@@ -105,11 +105,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"tablename": {
-											"value": "@pipeline().parameters.SchemaS",
+											"value": "@pipeline().parameters.tablsink",
 											"type": "Expression"
 										},
 										"schema": {
-											"value": "@pipeline().parameters.tableS",
+											"value": "@pipeline().parameters.Schemasink",
 											"type": "Expression"
 										}
 									}
@@ -128,6 +128,12 @@
 			"SchemaS": {
 				"type": "string",
 				"defaultValue": "dbo"
+			},
+			"tablsink": {
+				"type": "string"
+			},
+			"Schemasink": {
+				"type": "string"
 			}
 		},
 		"annotations": []
