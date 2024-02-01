@@ -1,0 +1,30 @@
+{
+	"name": "DSSQLSecondDBDynamicSchemaandTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LSSecondSqlDb",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tablename": {
+				"type": "string"
+			},
+			"Schemanm": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@split(dataset().tablename,'.')[0]",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@split(dataset().tablename,'.')[1]",
+				"type": "Expression"
+			}
+		}
+	}
+}
