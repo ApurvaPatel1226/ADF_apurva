@@ -41,7 +41,7 @@
 		"parameters": {
 			"foldername": {
 				"type": "string",
-				"defaultValue": "conatinery"
+				"defaultValue": "eventsource"
 			}
 		},
 		"annotations": []
