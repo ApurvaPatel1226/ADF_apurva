@@ -105,7 +105,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"tablename": {
-											"value": "@item().tablename",
+											"value": "@pipeline().parameters.SchemaS",
+											"type": "Expression"
+										},
+										"schema": {
+											"value": "@pipeline().parameters.tableS",
 											"type": "Expression"
 										}
 									}
