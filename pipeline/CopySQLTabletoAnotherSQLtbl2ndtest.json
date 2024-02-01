@@ -87,15 +87,11 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "DSForSecondSQLDb",
+									"referenceName": "DSSQLSecondDBDynamicSchemaandTable",
 									"type": "DatasetReference",
 									"parameters": {
-										"tableS": {
-											"value": "@split(item().tablename,'.')[1]",
-											"type": "Expression"
-										},
-										"SchemaS": {
-											"value": "@split(item().tablename,'.')[0]",
+										"tableName": {
+											"value": "@item().tablename",
 											"type": "Expression"
 										}
 									}
