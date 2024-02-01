@@ -6,10 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"tablename": {
-				"type": "string"
-			},
-			"Schemanm": {
+			"tableName": {
 				"type": "string"
 			}
 		},
@@ -18,11 +15,11 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": {
-				"value": "@split(dataset().tablename,'.')[0]",
+				"value": "@split(dataset().tableName,'.')[0]",
 				"type": "Expression"
 			},
 			"table": {
-				"value": "@split(dataset().tablename,'.')[1]",
+				"value": "@split(dataset().tableName,'.')[1]",
 				"type": "Expression"
 			}
 		}
