@@ -71,7 +71,9 @@
 								"sink": {
 									"type": "AzureSqlSink",
 									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
 								},
 								"enableStaging": false,
 								"translator": {
@@ -105,11 +107,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"tablename": {
-											"value": "@pipeline().parameters.tablsink",
+											"value": "@split(item().tablename,'.')[1]",
 											"type": "Expression"
 										},
 										"schema": {
-											"value": "@pipeline().parameters.Schemasink",
+											"value": "@split(item().tablename,'.')[0]",
 											"type": "Expression"
 										}
 									}
@@ -129,10 +131,10 @@
 				"type": "string",
 				"defaultValue": "dbo"
 			},
-			"tablsink": {
+			"t": {
 				"type": "string"
 			},
-			"Schemasink": {
+			"ts": {
 				"type": "string"
 			}
 		},
