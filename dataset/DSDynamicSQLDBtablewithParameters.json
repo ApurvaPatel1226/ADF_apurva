@@ -18,11 +18,11 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": {
-				"value": "@split(dataset().schema,'.')[0]",
+				"value": "@dataset().schema",
 				"type": "Expression"
 			},
 			"table": {
-				"value": "@split(dataset().tablename,'.')[1]",
+				"value": "@dataset().tablename",
 				"type": "Expression"
 			}
 		}
