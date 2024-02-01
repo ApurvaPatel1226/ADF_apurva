@@ -99,15 +99,11 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DSDynamicSQLDBtablewithParameters",
+									"referenceName": "DSDBsqladfSinkDynamicTablenm",
 									"type": "DatasetReference",
 									"parameters": {
-										"tablename": {
-											"value": "@split(item().tablename,'.')[1]",
-											"type": "Expression"
-										},
-										"schema": {
-											"value": "@split(item().tablename,'.')[0]",
+										"tablenm": {
+											"value": "@item().tablename",
 											"type": "Expression"
 										}
 									}
