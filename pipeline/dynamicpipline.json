@@ -1,0 +1,9 @@
+{
+	"name": "dynamicpipline",
+	"properties": {
+		"folder": {
+			"name": "mytestpipline"
+		},
+		"annotations": []
+	}
+}
