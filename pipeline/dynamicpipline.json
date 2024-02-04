@@ -109,8 +109,6 @@
 						{
 							"name": "Getwatermarkvaluelookup",
 							"type": "Lookup",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "CopytabelfromSecondSQL",
@@ -131,7 +129,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "Select Max(@{item().lastmodifieddate}) from @{item().Sinktable}",
+										"value": "Select Max(@{item().lastmodifieddate})from @{item().Sinktable}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -146,8 +144,6 @@
 						{
 							"name": "Updatemappingwatermark",
 							"type": "SqlServerStoredProcedure",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "Getwatermarkvaluelookup",
