@@ -17,7 +17,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "Select * from dbo.Mapping",
+						"sqlReaderQuery": {
+							"value": "Select * from dbo.Mapping where IsActive=1",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -32,7 +35,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Set variable1",
+						"activity": "LookupfromWatermark",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -40,10 +43,14 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('LookupfromWatermark').output.value",
+						"type": "Expression"
+					},
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "Copy data1",
+							"name": "CopytabelfromSecondSQL",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -55,34 +62,128 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"enableStaging": false
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "@item().SorceQuery",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DynamicDSforCopyMultipletable",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DynamicDSmultitabletoDBsqltraining",
+									"type": "DatasetReference",
+									"parameters": {
+										"tablenm": {
+											"value": "@item().Sinktable",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Getwatermarkvaluelookup",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "CopytabelfromSecondSQL",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "Select Max(@{item().lastmodifieddate}) from @{item().Sinktable}",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "DStoupdatewatermarktable",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "Updatemappingwatermark",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "Getwatermarkvaluelookup",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[sp_mapping]",
+								"storedProcedureParameters": {
+									"maxdate": {
+										"value": {
+											"value": "@activity('Getwatermarkvaluelookup').output.firstRow.lastmodifieddate",
+											"type": "Expression"
+										},
+										"type": "DateTime"
+									},
+									"tablename": {
+										"value": {
+											"value": "@item().Sinktable",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureSqlDatabase2",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
-				}
-			},
-			{
-				"name": "Set variable1",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "LookupfromWatermark",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "setquery",
-					"value": {
-						"value": "@activity('LookupfromWatermark').output.value",
-						"type": "Expression"
-					}
 				}
 			}
 		],
