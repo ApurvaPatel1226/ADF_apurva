@@ -2,7 +2,7 @@
 	"name": "DStoupdatewatermarktable",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabase2",
+			"referenceName": "LSSecondSqlDb",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
