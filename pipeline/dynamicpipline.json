@@ -129,7 +129,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "Select Max(@{item().lastmodifieddate})from @{item().Sinktable}",
+										"value": "Select Max(lastmodifieddate)  as lastmodifieddate from @{item().Sinktable}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -139,7 +139,7 @@
 									"referenceName": "DStoupdatewatermarktable",
 									"type": "DatasetReference"
 								},
-								"firstRowOnly": false
+								"firstRowOnly": true
 							}
 						},
 						{
@@ -185,6 +185,45 @@
 							"linkedServiceName": {
 								"referenceName": "AzureSqlDatabase2",
 								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "Getwatermarkvaluelookup_copy1",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "Getwatermarkvaluelookup",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "update dbo.Mapping set lastmodifieddate = '@{activity('Getwatermarkvaluelookup').output.firstRow.lastmodifieddate}'; select 1 as A;",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "DSSQLSecondDBDynamicSchemaandTable",
+									"type": "DatasetReference",
+									"parameters": {
+										"tableName": "dbo.Mapping"
+									}
+								},
+								"firstRowOnly": true
 							}
 						}
 					]
