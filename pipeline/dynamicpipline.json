@@ -27,7 +27,8 @@
 					"dataset": {
 						"referenceName": "DSDynamicWatermarktablemapping",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -108,6 +109,8 @@
 						{
 							"name": "Getwatermarkvaluelookup",
 							"type": "Lookup",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "CopytabelfromSecondSQL",
@@ -143,6 +146,8 @@
 						{
 							"name": "Updatemappingwatermark",
 							"type": "SqlServerStoredProcedure",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "Getwatermarkvaluelookup",
