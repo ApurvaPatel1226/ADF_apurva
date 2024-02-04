@@ -138,12 +138,15 @@
 								"dataset": {
 									"referenceName": "DStoupdatewatermarktable",
 									"type": "DatasetReference"
-								}
+								},
+								"firstRowOnly": false
 							}
 						},
 						{
 							"name": "Updatemappingwatermark",
 							"type": "SqlServerStoredProcedure",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "Getwatermarkvaluelookup",
