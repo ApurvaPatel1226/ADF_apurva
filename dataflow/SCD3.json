@@ -1,0 +1,36 @@
+{
+	"name": "SCD3",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DSfordataflowStaticfile",
+						"type": "DatasetReference"
+					},
+					"name": "sourcedata"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {First Name} as string,",
+				"          {Last Name} as string,",
+				"          {Start Date} as string,",
+				"          Salary as string,",
+				"          Team as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourcedata",
+				"sourcedata derive() ~> derivedColumn1"
+			]
+		}
+	}
+}
