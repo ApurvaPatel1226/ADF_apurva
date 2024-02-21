@@ -1,7 +1,6 @@
 {
-	"name": "myfirstadlsdataset",
+	"name": "DSADLLSSourceIPwithFile",
 	"properties": {
-		"description": "myfirstadlsdataset",
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
@@ -11,14 +10,19 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "output",
-				"fileSystem": "final"
+				"fileName": "Fixedlength file.txt",
+				"folderPath": "inp",
+				"fileSystem": "source"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
-			"firstRowAsHeader": true,
+			"firstRowAsHeader": false,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"type": "String"
+			}
+		]
 	}
 }

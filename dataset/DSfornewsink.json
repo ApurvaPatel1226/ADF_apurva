@@ -1,18 +1,16 @@
 {
-	"name": "myfirstadlsdataset",
+	"name": "DSfornewsink",
 	"properties": {
-		"description": "myfirstadlsdataset",
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeStorage1",
+			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"folderPath": "output",
-				"fileSystem": "final"
+				"type": "AzureBlobStorageLocation",
+				"container": "newsink"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

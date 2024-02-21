@@ -1,0 +1,72 @@
+{
+	"name": "Windowtransformation",
+	"properties": {
+		"activities": [
+			{
+				"name": "windowTranfermtion",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dataflow2",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"sourcefile": {
+								"foldername": {
+									"value": "@pipeline().parameters.foldername",
+									"type": "Expression"
+								},
+								"filenm": {
+									"value": "@pipeline().parameters.filename",
+									"type": "Expression"
+								}
+							},
+							"sink": {
+								"foldername": {
+									"value": "@pipeline().parameters.sinkfol",
+									"type": "Expression"
+								},
+								"filenm": {
+									"value": "@pipeline().parameters.filsink",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"parameters": {
+			"foldername": {
+				"type": "string",
+				"defaultValue": "conatinerx"
+			},
+			"filename": {
+				"type": "string",
+				"defaultValue": "employeePay.txt"
+			},
+			"filsink": {
+				"type": "string",
+				"defaultValue": "addtotalcol.csv"
+			},
+			"sinkfol": {
+				"type": "string",
+				"defaultValue": "conatinerx"
+			}
+		},
+		"annotations": []
+	}
+}

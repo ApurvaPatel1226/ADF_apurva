@@ -1,0 +1,12 @@
+{
+	"name": "DynamicDSforCopyMultipletable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LSSecondSqlDb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

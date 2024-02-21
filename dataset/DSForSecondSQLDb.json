@@ -1,0 +1,30 @@
+{
+	"name": "DSForSecondSQLDb",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LSSecondSqlDb",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tableS": {
+				"type": "string"
+			},
+			"SchemaS": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().SchemaS",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().tableS",
+				"type": "Expression"
+			}
+		}
+	}
+}

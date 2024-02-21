@@ -1,0 +1,92 @@
+{
+	"name": "dataflowforunion",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "UnionDataflow",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"sourceADLSfile1": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.foldername",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.filnameS1",
+									"type": "Expression"
+								}
+							},
+							"sourceADLSfile2": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.foldername",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.filnameS2",
+									"type": "Expression"
+								}
+							},
+							"source3": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.foldername",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.file3",
+									"type": "Expression"
+								}
+							},
+							"sinktoUnionResults": {
+								"tablename": {
+									"value": "@pipeline().parameters.tablename",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"parameters": {
+			"foldername": {
+				"type": "string",
+				"defaultValue": "conatinerx"
+			},
+			"filnameS1": {
+				"type": "string",
+				"defaultValue": "employeePay.txt"
+			},
+			"filnameS2": {
+				"type": "string",
+				"defaultValue": "ITdepartEmp.txt"
+			},
+			"tablename": {
+				"type": "string",
+				"defaultValue": "employeePay"
+			},
+			"file3": {
+				"type": "string",
+				"defaultValue": "ITdepartEmppay.txt"
+			}
+		},
+		"annotations": []
+	}
+}

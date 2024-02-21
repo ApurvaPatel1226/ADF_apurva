@@ -1,0 +1,66 @@
+{
+	"name": "Addcolumndataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dsadlscontainerxwithfile",
+						"type": "DatasetReference"
+					},
+					"name": "sourcefile"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dsadlscontainerxwithfile",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          id as short,",
+				"          name as string,",
+				"          salary as integer,",
+				"          gender as string,",
+				"          deptno as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourcefile",
+				"sourcefile derive(tax = salary*0.2,",
+				"          HRA = salary*0.1) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          id as string,",
+				"          name as string,",
+				"          salary as string,",
+				"          gender as string,",
+				"          deptno as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          id,",
+				"          name,",
+				"          salary,",
+				"          gender,",
+				"          deptno",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"name": "DSDBsqladfSinkDynamicTablenm",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tablenm": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@split(dataset().tablenm,'.')[0]",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@split(dataset().tablenm,'.')[1]",
+				"type": "Expression"
+			}
+		}
+	}
+}

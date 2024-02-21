@@ -1,0 +1,118 @@
+{
+	"name": "ErrorHandlingDataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DSADLSFinalOutput",
+						"type": "DatasetReference"
+					},
+					"name": "sourcedatafromfinalfolder",
+					"description": "sourcedatafromfinalfolder"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DSforErroRowinEmployeeErrolog",
+						"type": "DatasetReference"
+					},
+					"name": "sinktoErrorlogtable"
+				},
+				{
+					"dataset": {
+						"referenceName": "DSsltabelemployeeErr",
+						"type": "DatasetReference"
+					},
+					"name": "GoodRowTable"
+				}
+			],
+			"transformations": [
+				{
+					"name": "ErrorRow"
+				},
+				{
+					"name": "AddfilenamecolumninErrorRowtable"
+				},
+				{
+					"name": "AddfilenameforGoodRows"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          EMPLOYEE_ID as string,",
+				"          FIRST_NAME as string,",
+				"          LAST_NAME as string,",
+				"          EMAIL as string,",
+				"          HIRE_DATE as string,",
+				"          SALARY as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourcedatafromfinalfolder",
+				"sourcedatafromfinalfolder split(isNull(toDate(HIRE_DATE,'dd-MMM-yy')),",
+				"     disjoint: false) ~> ErrorRow@(ErrorRow, goodrows)",
+				"ErrorRow@ErrorRow derive(Filename = 'employeesErr.csv') ~> AddfilenamecolumninErrorRowtable",
+				"ErrorRow@goodrows derive(Filename = 'employeesErr.csv') ~> AddfilenameforGoodRows",
+				"AddfilenamecolumninErrorRowtable sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          EMPLOYEE_ID as integer,",
+				"          FIRST_NAME as string,",
+				"          LAST_NAME as string,",
+				"          EMAIL as string,",
+				"          HIRE_DATE as string,",
+				"          SALARY as integer,",
+				"          Filename as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          EMPLOYEE_ID,",
+				"          FIRST_NAME,",
+				"          LAST_NAME,",
+				"          EMAIL,",
+				"          HIRE_DATE,",
+				"          SALARY,",
+				"          Filename",
+				"     )) ~> sinktoErrorlogtable",
+				"AddfilenameforGoodRows sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          EMPLOYEE_ID as integer,",
+				"          FIRST_NAME as string,",
+				"          LAST_NAME as string,",
+				"          EMAIL as string,",
+				"          HIRE_DATE as string,",
+				"          SALARY as integer,",
+				"          Filename as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          EMPLOYEE_ID,",
+				"          FIRST_NAME,",
+				"          LAST_NAME,",
+				"          EMAIL,",
+				"          HIRE_DATE,",
+				"          SALARY,",
+				"          Filename",
+				"     )) ~> GoodRowTable"
+			]
+		}
+	}
+}

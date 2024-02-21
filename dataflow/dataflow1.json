@@ -1,0 +1,50 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dsadlscontainerxwithfile",
+						"type": "DatasetReference"
+					},
+					"name": "sourcetext"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Dsblobtargetwithfile",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"parameters{",
+				"     foldername as string ('conatinerx'),",
+				"     filename as string ('20010123_sales.txt')",
+				"}",
+				"source(output(",
+				"          Date as string,",
+				"          Salesman as string,",
+				"          Revenue as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourcetext",
+				"sourcetext sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Salesman,",
+				"          Date,",
+				"          Revenue",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

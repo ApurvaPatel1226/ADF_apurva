@@ -1,5 +1,5 @@
 {
-	"name": "dsazureblobmultiplefileread",
+	"name": "dsparameterisedblobstorage",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
@@ -11,20 +11,16 @@
 			}
 		},
 		"annotations": [],
-		"type": "DelimitedText",
+		"type": "Binary",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"container": {
+				"folderPath": {
 					"value": "@dataset().foldername",
 					"type": "Expression"
-				}
-			},
-			"columnDelimiter": ",",
-			"escapeChar": "\\",
-			"firstRowAsHeader": true,
-			"quoteChar": "\""
-		},
-		"schema": []
+				},
+				"container": "newsink"
+			}
+		}
 	}
 }

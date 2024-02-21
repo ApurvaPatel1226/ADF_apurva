@@ -1,37 +1,43 @@
 {
-	"name": "EventbasedHouryfilepasstosql",
+	"name": "getmetadata",
 	"properties": {
 		"activities": [
 			{
-				"name": "Set filetype",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "Executecopydatapipline",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"name": "Get Metadataof input file",
+				"type": "GetMetadata",
+				"dependsOn": [],
 				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "filetype",
-					"value": {
-						"value": "@replace(pipeline().parameters.filenm,'sales','')",
-						"type": "Expression"
+					"dataset": {
+						"referenceName": "dsforadlssink",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"lastModified"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
 					}
 				}
 			},
 			{
-				"name": "CheckifTitanic",
+				"name": "checklastmodifieddate",
+				"description": "checklastmodifieddate",
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "Set filetype",
+						"activity": "Get Metadataof input file",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -40,12 +46,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(variables('filetype'),'Hourly')",
+						"value": "@greater(formatDatetime(utcnow(),'yyyy-mm-dd'),formatDatetime(activity('Get Metadataof input file').output.lastModified,'yyyy-mm-dd'))",
 						"type": "Expression"
 					},
 					"ifFalseActivities": [
 						{
-							"name": "Copydailyfile",
+							"name": "Copytofinaladls",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -60,7 +66,7 @@
 								"source": {
 									"type": "DelimitedTextSource",
 									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
+										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
 										"wildcardFileName": "*",
 										"enablePartitionDiscovery": false
@@ -70,11 +76,15 @@
 									}
 								},
 								"sink": {
-									"type": "AzureSqlSink",
-									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false,
-									"tableOption": "autoCreate",
-									"disableMetricsCollection": false
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
 								},
 								"enableStaging": false,
 								"translator": {
@@ -88,27 +98,21 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "dseventsource",
+									"referenceName": "dsforadlssink",
 									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
 								{
-									"referenceName": "DSforSQLDest",
-									"type": "DatasetReference",
-									"parameters": {
-										"tablename": {
-											"value": "@variables('filetype')",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "myfirstadlsdataset",
+									"type": "DatasetReference"
 								}
 							]
 						}
 					],
 					"ifTrueActivities": [
 						{
-							"name": "Copyhourlyfile",
+							"name": "CopytoSorceBlob",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -123,7 +127,7 @@
 								"source": {
 									"type": "DelimitedTextSource",
 									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
+										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
 										"wildcardFileName": "*",
 										"enablePartitionDiscovery": false
@@ -133,11 +137,15 @@
 									}
 								},
 								"sink": {
-									"type": "AzureSqlSink",
-									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false,
-									"tableOption": "autoCreate",
-									"disableMetricsCollection": false
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
 								},
 								"enableStaging": false,
 								"translator": {
@@ -151,50 +159,21 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "dseventsource",
+									"referenceName": "dsforadlssink",
 									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
 								{
-									"referenceName": "DSforSQLDest",
-									"type": "DatasetReference",
-									"parameters": {
-										"tablename": {
-											"value": "@variables('filetype')",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "DSfornewsink",
+									"type": "DatasetReference"
 								}
 							]
 						}
 					]
 				}
-			},
-			{
-				"name": "Executecopydatapipline",
-				"type": "ExecutePipeline",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "copydataexcutepipline",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
 			}
 		],
-		"parameters": {
-			"filenm": {
-				"type": "string"
-			}
-		},
-		"variables": {
-			"filetype": {
-				"type": "String"
-			}
-		},
 		"annotations": []
 	}
 }

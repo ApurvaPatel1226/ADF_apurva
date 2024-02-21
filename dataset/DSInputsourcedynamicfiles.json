@@ -1,12 +1,12 @@
 {
-	"name": "dsazureblobmultiplefileread",
+	"name": "DSInputsourcedynamicfiles",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"foldername": {
+			"filename": {
 				"type": "string"
 			}
 		},
@@ -15,16 +15,30 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"container": {
-					"value": "@dataset().foldername",
+				"fileName": {
+					"value": "@dataset().filename",
 					"type": "Expression"
-				}
+				},
+				"container": "inputsource"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "ID",
+				"type": "String"
+			},
+			{
+				"name": "order_date",
+				"type": "String"
+			},
+			{
+				"name": "delivery_date",
+				"type": "String"
+			}
+		]
 	}
 }

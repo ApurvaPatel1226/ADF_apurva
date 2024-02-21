@@ -1,8 +1,8 @@
 {
-	"name": "dsazureblobmultiplefileread",
+	"name": "DSADLSdynamiconlyfolder",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage1",
+			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -14,8 +14,8 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation",
-				"container": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": {
 					"value": "@dataset().foldername",
 					"type": "Expression"
 				}
@@ -25,6 +25,27 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "Salesman",
+				"type": "String"
+			},
+			{
+				"name": "Q1",
+				"type": "String"
+			},
+			{
+				"name": "Q2",
+				"type": "String"
+			},
+			{
+				"name": "Q3",
+				"type": "String"
+			},
+			{
+				"name": "Q4",
+				"type": "String"
+			}
+		]
 	}
 }

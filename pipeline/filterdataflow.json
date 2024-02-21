@@ -1,0 +1,75 @@
+{
+	"name": "filterdataflow",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "filetrdataflow",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"sourcefile": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.folder",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.file",
+									"type": "Expression"
+								}
+							},
+							"sink1": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.sinkfolder",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.fS",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"parameters": {
+			"folder": {
+				"type": "string",
+				"defaultValue": "conatinerx"
+			},
+			"file": {
+				"type": "string",
+				"defaultValue": "employeePay.txt"
+			},
+			"sinkfolder": {
+				"type": "string",
+				"defaultValue": "conatinery"
+			},
+			"fS": {
+				"type": "string",
+				"defaultValue": "fileroutput.txt"
+			}
+		},
+		"folder": {
+			"name": "test"
+		},
+		"annotations": []
+	}
+}

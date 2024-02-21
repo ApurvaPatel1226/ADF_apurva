@@ -1,0 +1,90 @@
+{
+	"name": "DataflowforExist",
+	"properties": {
+		"activities": [
+			{
+				"name": "exisgtsdataflow",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Existdataflowuncommonrecords",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"sourcefile1": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.folder",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.f1",
+									"type": "Expression"
+								}
+							},
+							"sourcefile2": {
+								"Folder_Name": {
+									"value": "@pipeline().parameters.folder",
+									"type": "Expression"
+								},
+								"File_Name": {
+									"value": "@pipeline().parameters.f2",
+									"type": "Expression"
+								}
+							},
+							"sink1": {
+								"foldername": {
+									"value": "@pipeline().parameters.sinkfolder",
+									"type": "Expression"
+								},
+								"filenm": {
+									"value": "@pipeline().parameters.sinkfile",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"parameters": {
+			"folder": {
+				"type": "string",
+				"defaultValue": "conatinerx"
+			},
+			"f1": {
+				"type": "string",
+				"defaultValue": "ITdepartEmp.txt"
+			},
+			"f2": {
+				"type": "string",
+				"defaultValue": "ITdepartEmppay.txt"
+			},
+			"tablenme": {
+				"type": "string",
+				"defaultValue": "employeePay"
+			},
+			"sinkfolder": {
+				"type": "string",
+				"defaultValue": "final"
+			},
+			"sinkfile": {
+				"type": "string",
+				"defaultValue": "uncommon.txt"
+			}
+		},
+		"annotations": []
+	}
+}

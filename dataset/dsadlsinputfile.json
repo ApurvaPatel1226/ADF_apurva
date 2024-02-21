@@ -1,7 +1,6 @@
 {
-	"name": "myfirstadlsdataset",
+	"name": "dsadlsinputfile",
 	"properties": {
-		"description": "myfirstadlsdataset",
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
@@ -11,8 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "output",
-				"fileSystem": "final"
+				"fileSystem": "inputfiles"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
